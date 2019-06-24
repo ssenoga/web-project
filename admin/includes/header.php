@@ -6,7 +6,7 @@ include 'functions.php';
 ?>
 
 <?php
-if(isset($_SESSION['role']) != "admin"){
+if($_SESSION['role'] != "Admin"){
     header("Location: ../index.php");
 }
 
@@ -45,6 +45,11 @@ if(isset($_SESSION['role']) != "admin"){
     <script src="https://cdn.ckeditor.com/ckeditor5/11.2.0/classic/ckeditor.js"></script>
      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/scripts.js"></script>
 
 </head>
 

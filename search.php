@@ -26,7 +26,7 @@
                     $rows['post_title'];
                     $rows['post_author'];
                     $rows['post_date'];
-                    $row_content = substr($rows['post_content'], 0,100);
+                    $row_content = substr($rows['post_content'], 0,500);
                     $rows['post_image'];
             ?>
 

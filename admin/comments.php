@@ -11,8 +11,8 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Welcome 
-                            <small>ssenoga</small>
+                            Welcome to comment section
+                            <small><?php echo $_SESSION['username'];?></small>
                         </h1>
                        <?php
                         if(isset($_GET['source'])) {
@@ -46,10 +46,10 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <!-- <script src="js/jquery.js"></script> -->
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <!-- <script src="js/bootstrap.min.js"></script> -->
 
 </body>
 

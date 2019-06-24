@@ -22,7 +22,7 @@
                     $post_title = $rows['post_title'];
                     $post_author = $rows['post_author'];
                     $post_date = $rows['post_date'];
-                    $row_content = substr($rows['post_content'], 0,100);
+                    $row_content = substr($rows['post_content'], 0,500);
                     $post_image = $rows['post_image'];
                     $post_status = $rows['post_status']; 
                     if($post_status === 'varified'){
@@ -53,7 +53,7 @@
                 </div>
            
             <!-- Blog Sidebar Widgets Column -->
-            <?php include 'includes/Sidebar.php';?>
+            <?php include 'includes/sidebar.php';?>
         </div>
         <!-- /.row -->
 

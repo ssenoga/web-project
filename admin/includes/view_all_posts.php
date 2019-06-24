@@ -17,7 +17,7 @@ if(isset($_POST['submit'])){
     }
 }
 ?>
-
+<?php include 'delete_modal.php';?>
 <form method="POST" action="">
     <div class="table-responsive">
  <table class="table table-bordered table-hover">
@@ -86,7 +86,8 @@ if(isset($_POST['submit'])){
                 echo "<td>{$post_tags}</td>";
                 echo "<td>{$post_comments}</td>";
                 echo "<td>{$post_date}</td>";
-                echo "<td><a onClick =\" javascript: return confirm('Are You Sure You Want To Delete This Post?');\" href='posts.php?delete={$post_id}'>Delete</a></td>";
+                echo "<td><a rel='{$post_id}' href='javascript:void(0)' class='post_delete'>Delete</a></td>";
+                // echo "<td><a onClick =\" javascript: return confirm('Are You Sure You Want To Delete This Post?');\" href='posts.php?delete={$post_id}'>Delete</a></td>";
                 echo "<td><a href='posts.php?source=edit_posts&p_id={$post_id}'>Edit</a></td>";
             echo "</tr>";
             }
@@ -104,3 +105,14 @@ $delete_results = mysqli_query($conn,$delete_query);
 header("Location: posts.php");
 }
 ?>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.post_delete').on('click',function(){
+            let id = $(this).attr("rel");
+            const delete_url = "posts.php?delete="+id+"";
+            $('.confirm_delete').attr('href',delete_url);
+            $('#myModal').modal('show');
+        });
+    });
+</script>

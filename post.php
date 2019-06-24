@@ -36,7 +36,7 @@
 
                     <!-- First Blog Post -->
                     <h2>
-                        <a href="#"><?php echo $rows['post_title'];?> </a>
+                        <a href="javascript:void(0)"><?php echo $rows['post_title'];?> </a>
                     </h2>
                     <p class="lead">
                         by <a href="author_posts.php?author=<?php echo $rows['post_author'];?>&p_id=<?php echo $rows['post_author'];?>"><?php echo $rows['post_author'];?> </a>
@@ -54,11 +54,19 @@
                 <?php
                     if(isset($_POST['create_comments'])){
                         $the_post_id = $_GET['p_id'];
-                        $comment_author = $_POST['comment_author'];
-                        $comment_email = $_POST['comment_email'];
                         $comment_content = $_POST['comment_content'];
+                        if(isset($_SESSION['username'])){
+                            $comment_author = $_SESSION['username'];
+                            $comment_email = $_SESSION['email'];
+                            $pic = $_SESSION['profile_pic'];
+                            
+                        }else {
+                            $comment_author = $_POST['comment_author'];
+                            $comment_email = $_POST['comment_email'];
+                        }
 
-                        $query = "INSERT INTO comments (comment_post_id,cooment_author,comment_email,comment_content,comment_status,comment_date) VALUES($the_post_id,'{$comment_author}','{$comment_email}','{$comment_content}','unproved',now())";
+
+                        $query = "INSERT INTO comments (comment_post_id,cooment_author,comment_email,comment_content,comment_status,comment_date,user_pic) VALUES($the_post_id,'{$comment_author}','{$comment_email}','{$comment_content}','Approved',now(),'{$pic}')";
                         $create_comment = mysqli_query($conn,$query);
                         if(!$create_comment){
                             die("QUERY FAILED ".mysqli_error($conn));
@@ -72,8 +80,22 @@
 
                 
                 <div class="well">
+                     
+                    <?php if(isset($_SESSION['username'])): ?>
                     <h4>Leave a Comment:</h4>
                     <form role="form" action="" method="post">
+                        <div class="form-group">
+                            <label for="textarea">Comment<span> *</span></label>
+                            <textarea class="form-control" rows="3" name="comment_content" required="true"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" name="create_comments">Comment</button> 
+                    </form>
+                    <?php else:?>
+                        <!-- UPDATED THE COMMENT SECTION -->
+                        <p class="lead">Log In or Regester To add A comment</p>
+                        <a href="login.php" class="btn btn-primary">Log In</a>
+
+                        <!-- <form role="form" action="" method="post">
                         <div class="form-group">
                             <label for="comment_author">Name<span> *</span></label>
                             <input type="text" class="form-control" name="comment_author" required="true">
@@ -87,7 +109,13 @@
                             <textarea class="form-control" rows="3" name="comment_content" required="true"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary" name="create_comments">Comment</button>
-                    </form>
+                    </form> -->
+                    <?php endif?>
+
+
+
+                   
+                    
                 </div>
 
                 <hr>
@@ -106,10 +134,13 @@
                         $comment_date = $rows['comment_date'];
                         $comment_content = $rows['comment_content'];
                         $comment_author = $rows['cooment_author'];
+                        $pic = $rows['user_pic'];
+                         
                     ?>
+
                     <div class="media">
-                    <a class="pull-left" href="#">
-                        <img class="media-object" src="http://placehold.it/64x64" alt="">
+                    <a class="pull-left" href="javascript:void(0)">
+                        <img class="media-object img-circle" src="./images/<?php echo $pic; ?>" alt="profiles" width="50px" height="50px">
                     </a>
                     <div class="media-body">
                         <h4 class="media-heading"><?php echo $comment_author;?> 
@@ -117,9 +148,10 @@
                         </h4>
                         <?php echo $comment_content;?> 
                     </div>
+                    <hr>
                 </div>
 
-                <?php } ?>
+                <?php }?>
 
                 
 
@@ -136,4 +168,8 @@
         <hr>
 
         <!-- Footer -->
+        <ul class="pager">
+            <li>1</li>
+            <li>2</li>
+        </ul>
 <?php include 'includes/footer.php';?>

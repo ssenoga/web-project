@@ -29,10 +29,22 @@
                     }
 
                     ?>
-                    <li><a href="admin">Admin</a></li>
-                    <li><a href="registration.php">Registration</a></li>
+                    
                     <?php
-                    if(isset($_SESSION['role'])){
+                        if($_SESSION['username']==null){
+                            ?>
+                        <li><a href="registration.php">Registration</a></li>
+                        <li><a href="./login.php">Log In</a></li>
+                        
+                        <?php
+                    }
+                ?>
+                    <?php
+                    if($_SESSION['role'] == "Admin"){
+                        ?>
+                        <li><a href="admin">Admin</a></li>
+                        
+                        <?php
                         if(isset($_GET['p_id'])){
                             $the_post_id = $_GET['p_id'];
                             echo "<li><a href='admin/posts.php?source=edit_posts&p_id={$the_post_id}'>Edit This Post</a></li>";
@@ -41,6 +53,7 @@
 
 
                     ?>
+
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

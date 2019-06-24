@@ -30,19 +30,26 @@
             <!-- /.input-group -->
         </div>
         <!-- log in form -->
+
          <div class="well">
-            <h4>Log in</h4>
-            <form action="includes/login.php" method="POST">
-                <div class="form-group">
-                    <input name="username" type="text" class="form-control" placeholder="Enter Username">
-                </div>
-                <div class="input-group">
-                    <input type="password" name="password" class="form-control" placeholder="Enter Password">
-                    <span class="input-group-btn">
-                        <button name="login" class="btn btn-primary" type="submit">Log in</button>
-                    </span>
-                </div>
-            </form>
+            <?php if(isset($_SESSION['role'])): ?>
+                <h4>Logged in as <?php echo $_SESSION['username']; ?></h4>
+                <a href="includes/logout.php" class="btn btn-primary">Log out</a
+>            <?php else: ?>
+                <h4>Log in</h4>
+                <form action="includes/login.php" method="POST">
+                    <div class="form-group">
+                        <input name="username" type="text" class="form-control" placeholder="Enter Username">
+                    </div>
+                    <div class="input-group">
+                        <input type="password" name="password" class="form-control" placeholder="Enter Password">
+                        <span class="input-group-btn">
+                            <button name="login" class="btn btn-primary" type="submit">Log in</button>
+                        </span>
+                    </div>
+                </form>
+            <?php endif; ?>
+            
             <!-- /.input-group -->
         </div>
 

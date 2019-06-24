@@ -25,7 +25,8 @@ if(isset($_POST['submit'])){
         if(!$query_results){
             die("QUERY FAILED ".mysqli_error($conn));
         } else {
-            $message = "";
+            // return header('Location: ./');
+            $message = "<a href='./' class='btn btn-success'>Success Registeration</a>";
         }
     }else {
         $message = "This field should not be empty";
@@ -50,6 +51,7 @@ if(isset($_POST['submit'])){
         <div class="row">
             <div class="col-xs-6 col-xs-offset-3">
                 <div class="form-wrap">
+                    
                 <h1>Register</h1>
                     <form role="form" action="registration.php" method="post" id="login-form" autocomplete="off">
                         <div class="form-group">
@@ -68,7 +70,7 @@ if(isset($_POST['submit'])){
                             <h6 style="color: red;"><?php echo $message;?></h6>
                         </div>
                 
-                        <input type="submit" name="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Register">
+                        <input type="submit" name="submit" id="btn-login" class="btn btn-primary btn-lg btn-block" value="Register">
                     </form>
                  
                 </div>
