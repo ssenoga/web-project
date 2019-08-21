@@ -35,9 +35,13 @@ if(isset($_POST['login'])){
 		header("Location: ../admin");
 	} else {
 		// header("Location: ../index.php");
-		echo "<script>alert('wrong details');</script>";
+		echo mysqli_error($conn);
+		// echo "<script>alert('wrong details');
+		// 	window.location = '../';
 
-		// echo "login failed".mysqli_error($conn);
+		// </script>";
+
+		echo "login failed".mysqli_error($conn);
 	}
 }
 

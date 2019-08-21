@@ -14,7 +14,7 @@
             <ul class="nav navbar-right top-nav">
                 <li><a href="../index.php">Homepage</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><!-- <i class="fa fa-user"></i> --><img class="img-circle" src="../images/<?php echo $_SESSION['profile_pic'];?>" width="30px" height="30px"> <?php echo $_SESSION['username'];?> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><!-- <i class="fa fa-user"></i> --><img class="img-circle"  width="30px" height="30px"> <?php echo $_SESSION['username'];?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="profile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
